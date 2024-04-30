@@ -13,7 +13,7 @@ spec:
   source:
     path: argocd
     repoURL: https://github.com/maxxam123/helm.git
-    targetRevision: *
+    targetRevision: 1.16.0
     helm:
       valueFiles:
       - values.yaml
