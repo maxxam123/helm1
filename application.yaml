@@ -1,35 +1,18 @@
-apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-application
-  namespace: argocd # must be in a valid source ns as defined in the ArgoCD project
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
+  name: test-apps
 spec:
-  project: default
-  # Source using custom templates
-  source:
-    repoURL: https://github.com/maxxam123/helm.git
-    targetRevision: HEAD
-    path: ./
-    helm:
-      valueFiles:
-        # values files path relative to path field defined above
-        # therefore we need to go up 2 dir levels
-        - ./values.yaml
   destination:
-    server: https://kubernetes.default.svc
     namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
-      allowEmpty: true
-    # syncOptions:
-    #   - CreateNamespace=true
-    #   - PrunePropagationPolicy=foreground
-    #   - PruneLast=true
-    retry:
-      limit: 2
+  source:
+    path: argocd
+    repoURL: https://github.com/maxxam123/helm.git
+    targetRevision: test
+    helm:
+      valueFiles:
+      - values.yaml
