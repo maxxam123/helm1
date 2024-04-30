@@ -6,13 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    path: argocd
+    path: ./argocd
     chart: max-chart
     repoURL: https://github.com/maxxam123/helm.git
     targetRevision: main
     helm:
       valueFiles:
-        - values.yaml
+        - ./values.yaml
   destination:
     name: in-cluster
     namespace: max2
