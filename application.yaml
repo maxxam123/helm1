@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    path: ./argocd/template
+    path: ./argocd
     chart: max-chart
     repoURL: https://github.com/maxxam123/helm.git
-    targetRevision: main
+    targetRevision: HEAD
     helm:
       valueFiles:
         - ./values.yaml
   destination:
-    name: in-cluster
+    name: https://kubernetes.default.svc
     namespace: max2
   syncPolicy:
     automated: {}
