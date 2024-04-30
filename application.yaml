@@ -9,7 +9,7 @@ spec:
     path: ./argocd
     chart: max-chart
     repoURL: https://github.com/maxxam123/helm.git
-    targetRevision: main
+    targetRevision: v0.1.0
     helm:
       valueFiles:
         - ./values.yaml
