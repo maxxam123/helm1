@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    path: ./argocd
+    path: ./argocd/template
     chart: max-chart
     repoURL: https://github.com/maxxam123/helm.git
     targetRevision: main
