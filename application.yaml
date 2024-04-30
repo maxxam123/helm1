@@ -1,25 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-test
+  name: external-secrets
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: max2
-    name: in-cluster
   project: default
   source:
-    path: argocd
-    repoURL: https://github.com/maxxam123/helm.git
-    targetRevision: main
-    helm:
-      valueFiles:
-        - values.yaml
+    chart: external-secrets
+    repoURL: https://charts.external-secrets.io
+    targetRevision: v0.5.9
+    # helm:
+      # releaseName: cert-manager
+  destination:
+    name: in-cluster
+    namespace: external-secrets
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    automated: {}
